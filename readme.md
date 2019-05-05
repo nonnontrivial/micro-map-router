@@ -1,19 +1,21 @@
-# rut
+# micro-map-router
 
-routes for lambdas - associate functions with the methods they should be invoked on.
+Routes for lambdas.
+
+Associate functions with the methods they should be invoked on.
 
 ```console
-npm i rut
+npm i micro-map-router
 ```
 
 `./lambda.ts`
 
 ```typescript
-import rut from "rut";
+import { router } from "micro-map-router";
 import { send, json } from "micro";
 import { IncomingMessage, ServerResponse } from "http";
 
-export default rut(
+export default router(
   new Map([
     [
       // only invoked on GET requests
@@ -22,6 +24,13 @@ export default rut(
         send(res, 200, { body });
       },
       ["GET"]
+    ],
+    [
+      // only invoked on POST requests
+      async (req: IncomingMessage, res: ServerResponse) => {
+        send(res, 403);
+      },
+      ["POST"]
     ]
   ])
 );

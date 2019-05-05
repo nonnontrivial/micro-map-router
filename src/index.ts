@@ -1,7 +1,7 @@
-import { IncomingMessage, ServerResponse } from "http";
+import { IncomingMessage as IM, ServerResponse as SR } from "http";
 import { send } from "micro";
 
-export default map => async (req: IncomingMessage, res: ServerResponse) => {
+export const router = (map: any) => async (req: IM, res: SR) => {
   try {
     // TODO(kev): make the following headers opt-in
     // see https://zeit.co/docs/v2/routing/compression/

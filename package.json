@@ -1,10 +1,10 @@
 {
-  "name": "rut",
+  "name": "micro-map-router",
   "version": "0.1.0",
   "description": "routes for lambdas",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nonnontrivial/rut.git"
+    "url": "git+https://github.com/nonnontrivial/micro-map-router.git"
   },
   "author": "Kevin Donahue <nonnontrivial@gmail.com>",
   "keywords": [
@@ -12,9 +12,9 @@
     "micro",
     "routes"
   ],
-  "homepage": "https://github.com/nonnontrivial/rut",
+  "homepage": "https://github.com/nonnontrivial/micro-map-router",
   "bugs": {
-    "url": "https://github.com/nonnontrivial/rut/issues"
+    "url": "https://github.com/nonnontrivial/micro-map-router/issues"
   },
   "license": "MIT",
   "files": [
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.12",
+    "@types/micro": "7.3.3",
     "@types/node": "12.0.0",
     "jest": "24.8.0",
     "micro": "9.3.4",
