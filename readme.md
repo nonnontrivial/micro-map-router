@@ -2,7 +2,7 @@
 
 Routes for lambdas.
 
-Associate functions with the methods they should be invoked on.
+Associate functions with the HTTP methods they should be invoked on.
 
 ```console
 npm i micro-map-router
