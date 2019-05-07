@@ -15,7 +15,7 @@ export const router = (map: Map<any, any[]>) => async (req: IM, res: SR) => {
       }
       await fn(req, res);
     }
-  } catch (_) {
-    send(res, 500);
+  } catch (err) {
+    send(res, 500, err);
   }
 };
