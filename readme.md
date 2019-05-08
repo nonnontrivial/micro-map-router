@@ -20,15 +20,15 @@ export default router(
     [
       // only invoked on GET requests
       async (req: IncomingMessage, res: ServerResponse) => {
-        const body = await json(req);
-        send(res, 200, { body });
+        send(res, 200, {});
       },
       ["GET"]
     ],
     [
       // only invoked on POST and PUT requests
       async (req: IncomingMessage, res: ServerResponse) => {
-        send(res, 403);
+        const { user } = await json(req);
+        send(res, 200, { user });
       },
       ["POST", "PUT"]
     ]
