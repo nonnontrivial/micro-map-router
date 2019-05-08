@@ -26,11 +26,11 @@ export default router(
       ["GET"]
     ],
     [
-      // only invoked on POST requests
+      // only invoked on POST and PUT requests
       async (req: IncomingMessage, res: ServerResponse) => {
         send(res, 403);
       },
-      ["POST"]
+      ["POST", "PUT"]
     ]
   ])
 );
