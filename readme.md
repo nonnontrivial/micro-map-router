@@ -4,9 +4,7 @@ Routes for lambdas.
 
 Associate functions with the HTTP methods they should be invoked on.
 
-Sets `Access-Control-Allow-Origin` header to `*` and [`Accept-Encoding` to `br`](https://zeit.co/docs/v2/routing/compression/) by default.
-
-This will become opt-in in the future.
+Just define a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) where keys are async functions and values are arrays of allowed HTTP methods.
 
 ```console
 npm i micro-map-router
