@@ -14,16 +14,16 @@ enum Method {
   UNLINK
 }
 
-type M = Map<
+export type M = Map<
   (req: IM, res: SR) => Promise<any>,
-  (Method | string | undefined)[]
+  (Method | string | void)[]
 >;
 
+// export a function that takes a map and returns a function that only executes
+// keys of the map when values of the map include the HTTP method in the request
 export const router = (map: M) => async (req: IM, res: SR) => {
   try {
     for (const [fn, methods] of map.entries()) {
-      // If the methods provided as this function's value do not include
-      // this particular request's method, skip it
       if (!methods.includes(req.method)) {
         continue;
       }
