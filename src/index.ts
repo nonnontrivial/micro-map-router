@@ -1,22 +1,49 @@
 import { send } from "micro";
 import { IncomingMessage as IM, ServerResponse as SR } from "http";
 
-enum Method {
-  GET,
-  PUT,
-  POST,
-  PATCH,
+// all of require("http").METHODS
+export enum Method {
+  ACL,
+  BIND,
+  CHECKOUT,
+  CONNECT,
   COPY,
-  LINK,
   DELETE,
-  OPTIONS,
+  GET,
+  HEAD,
+  LINK,
+  LOCK,
+  M_SEARCH,
+  MERGE,
+  MKACTIVITY,
+  MKCALENDAR,
+  MKCOL,
   MOVE,
-  UNLINK
+  NOTIFY,
+  OPTIONS,
+  PATCH,
+  POST,
+  POROPFIND,
+  PROPPATCH,
+  PURGE,
+  PUT,
+  REBIND,
+  REPORT,
+  SEARCH,
+  SOURCE,
+  SUBSCRIBE,
+  TRACE,
+  UNBIND,
+  UNLINK,
+  UNLOCK,
+  UNSUBSCRIBE
 }
+
+// type Header = { [key: string]: string };
 
 export type M = Map<
   (req: IM, res: SR) => Promise<any>,
-  (Method | string | void)[]
+  (Method | void | string )[]
 >;
 
 // export a function that takes a map and returns a function that only executes
