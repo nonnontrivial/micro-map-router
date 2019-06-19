@@ -1,3 +1,1 @@
-// import { router } from "../src";
-
-test.todo("does not execute fn associated with unrequested method");
+test.todo("only executes keys when values contain requested method");
