@@ -1,7 +1,6 @@
 import { send } from "micro";
-import { IncomingMessage as IM, ServerResponse as SR } from "http";
+import { IncomingMessage, ServerResponse } from "http";
 
-// all of require("http").METHODS
 export enum Method {
   ACL,
   BIND,
@@ -40,13 +39,27 @@ export enum Method {
 }
 
 export type RouteMap = Map<
-  (req: IM, res: SR) => Promise<any>,
+  (req: IncomingMessage, res: ServerResponse) => Promise<any>,
   (Method | void | string)[]
 >;
 
-// export a function that takes a map and returns a function that only executes
-// keys of the map when the request's HTTP method is included in the array of values
-export const router = (map: RouteMap) => async (req: IM, res: SR) => {
+// support https://zeit.co/blog/now-node-helpers
+export type Req = IncomingMessage & { query?: any; cookies?: {}; body?: {} };
+export type Res = ServerResponse & { status?: any; json?: any; send?: any };
+
+/**
+ * Returns a function that executes keys of a provided map when incoming requests's
+ * HTTP method is included in the array of values.
+ *
+ * @remarks
+ * This function is importable as {import { router } from "micro-map-router"}.
+ *
+ * @param map - Map with async functions as keys and arrays of strings as values
+ * @returns async (req: IncomingMessage, res: ServerResponse): Promise<any>
+ *
+ * @beta
+ */
+export const router = (map: RouteMap) => async (req: Req, res: Res) => {
   try {
     for (const [fn, methods] of map.entries()) {
       if (!methods.includes(req.method)) {

@@ -39,7 +39,10 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "verbose": false,
-    "testURL": "http://localhost/"
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    }
   }
 }
