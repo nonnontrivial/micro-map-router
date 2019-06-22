@@ -1,4 +1,4 @@
-import { send } from "micro";
+import { createError } from "micro";
 import { IncomingMessage, ServerResponse } from "http";
 
 export enum Method {
@@ -65,9 +65,12 @@ export const router = (map: RouteMap) => async (req: Req, res: Res) => {
       if (!methods.includes(req.method)) {
         continue;
       }
+      // if (process.env.NODE_ENV !== "production" && fn.name) {
+      //   log(`invoking ${fn.name}`);
+      // }
       await fn(req, res);
     }
   } catch (err) {
-    send(res, 500, err);
+    throw createError(err.statusCode, err.statusText);
   }
 };
