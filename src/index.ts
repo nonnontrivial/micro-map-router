@@ -39,14 +39,14 @@ export enum Method {
   UNSUBSCRIBE
 }
 
-export type M = Map<
+export type RouteMap = Map<
   (req: IM, res: SR) => Promise<any>,
   (Method | void | string)[]
 >;
 
 // export a function that takes a map and returns a function that only executes
 // keys of the map when the request's HTTP method is included in the array of values
-export const router = (map: M) => async (req: IM, res: SR) => {
+export const router = (map: RouteMap) => async (req: IM, res: SR) => {
   try {
     for (const [fn, methods] of map.entries()) {
       if (!methods.includes(req.method)) {
